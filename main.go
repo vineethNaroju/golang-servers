@@ -1,29 +1,9 @@
 package main
 
-import (
-	"fmt"
-	"sync"
-
-	Counter "example.com/gobrr/counter"
-)
+import "example.com/gobrr/loadbalancer"
 
 func main() {
-	counter := Counter.NewCounter()
+	// Crawler.Test()
 
-	wg := &sync.WaitGroup{}
-	
-	go counter.Inc("a", wg)
-	go counter.Inc("b", wg)
-	go counter.Inc("c", wg)
-
-	go counter.Dec("d", wg)
-	go counter.Dec("e", wg)
-	go counter.Dec("f", wg)
-
-	wg.Add(6)
-	wg.Wait()
-
-	fmt.Println("All done")
-
-	//time.Sleep(time.Millisecond * 10000)
+	loadbalancer.Test()
 }
